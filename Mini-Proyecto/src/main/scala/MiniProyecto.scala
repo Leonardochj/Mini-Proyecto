@@ -32,20 +32,20 @@ val error7= (res7 - 0.785398)
 
 //Metodo Simpson 1/3 compuesta
 
-val compuesta = (a:Double , b: Double,n: Int,fn: Double=> Double) =>{
-  val h= (b-a)/n
+val compuesta = (a:Int , b: Int,n: Int,fn: Double=> Double) =>{
+  val h= (b-a)/(n*1.0)
   val xsub=(j:Double)=> a+(j*h)
   (h/3) * (1 to n/2).toList.map(j => fn(xsub((2*j)-2))+4*fn(xsub((2*j)-1))+fn(xsub(2*j))).sum
 }
 
 //resultados Simpmson 1/3 Compuestas
-val rCom1=compuesta(3,5,2,fx1)
-val rCom2=compuesta(0,2,2,fx2)
-val rCom3=compuesta(-1,1,2,fx3)
-val rCom4=compuesta(1,2,2,fx4)
-val rCom5=compuesta(0,1,2,fx5)
-val rCom6=compuesta(2,3,2,fx6)
-val rCom7=compuesta(0,1,2,fx7)
+val rCom1=compuesta(3,5,100,fx1)
+val rCom2=compuesta(0,2,100,fx2)
+val rCom3=compuesta(-1,1,100,fx3)
+val rCom4=compuesta(1,2,100,fx4)
+val rCom5=compuesta(0,1,100,fx5)
+val rCom6=compuesta(2,3,100,fx6)
+val rCom7=compuesta(0,1,100,fx7)
 
 //calculo de Errores Simpmson 1/3 Compuesta
 val errorCom1= (rCom1- 7.33)
@@ -55,6 +55,30 @@ val errorCom4 =(rCom4 - 1.09861)
 val errorCom5= (rCom5 - 1.71828)
 val errorCom6 = (rCom6 - 0.828427)
 val errorCom7= (rCom7 - 0.785398)
+
+//Metodo Simpson 1/3 extendida
+val extendida = (a:Int ,b:Int ,fn: Double => Double) => {
+  val n=2*(b-a)
+  val h=(b-a)/(n*1.0)
+  (h/3) *(fn(a)+(4*(1 to n-1 by 2).map(i=>fn(a+i*h)).sum)+(2*(2 to n-2 by 2).map(j=> fn(a+j*h)).sum)+fn(b))
+}
+//resultados Simpmson 1/3 Extendida
+val rExtend1=extendida(3,5,fx1)
+val rExtend2=extendida(0,2,fx2)
+val rExtend3=extendida(-1,1,fx3)
+val rExtend4=extendida(1,2,fx4)
+val rExtend5=extendida(0,1,fx5)
+val rExtend6=extendida(2,3,fx6)
+val rExtend7=extendida(0,1,fx7)
+
+//calculo de Errores Simpmson 1/3 Extendida
+val errorExte1= (rExtend1- 7.33)
+val errorExte2 =(rExtend2- 8)
+val errorExte3= (rExtend3- 3.333)
+val errorExte4 =(rExtend4 - 1.09861)
+val errorExte5= (rExtend5 - 1.71828)
+val errorExte6 = (rExtend6 - 0.828427)
+val errorExte7= (rExtend7 - 0.785398)
 @main def proyecto():Unit={
   println("Metodo Simpson 1/3")
   println(res1)
@@ -91,6 +115,24 @@ val errorCom7= (rCom7 - 0.785398)
   println(errorCom5)
   println(errorCom6)
   println(errorCom7)
+  println()
+  println("Metodo Simpson 1/3 Extendida")
+  println(rExtend1)
+  println(rExtend2)
+  println(rExtend3)
+  println(rExtend4)
+  println(rExtend5)
+  println(rExtend6)
+  println(rExtend7)
+  println()
+  println("Calculo de Margen de Error Simpson 1/3 Extendida")
+  println(errorExte1)
+  println(errorExte2)
+  println(errorExte3)
+  println(errorExte4)
+  println(errorExte5)
+  println(errorExte6)
+  println(errorExte7)
 }
 
 
