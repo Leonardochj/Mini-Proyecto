@@ -1,3 +1,4 @@
+//Funciones a Resolver
 val fx1=(x: Double)=> -math.pow(x,2)+8*x-12
 val fx2=(x: Double)=> 3*math.pow(x,2)
 val fx3=(x: Double)=> x+(2*math.pow(x,2))-math.pow(x,3)+(5*math.pow(x,4))
@@ -6,11 +7,11 @@ val fx5=(x: Double)=> math.pow(math.E,x)
 val fx6=(x: Double)=> 1/math.sqrt(x-1)
 val fx7=(x: Double)=> 1/(1+math.pow(x,2))
 
+//Calculo de Errores
+val calular_Error = (res:Double,espe:Double) => (res - espe).abs
+
 // Metodo Simpson 1/3
-val simpson1 = (a:Double , b: Double,fn: Double=> Double ) => {
-  val x = (a+b)/2
-  (b-a)*(fn(a)+4*fn(x)+fn(b))/6
-}
+val simpson1 = (a:Int , b: Int,fn: Double=> Double ) => (b-a)*(fn(a)+4*fn((a+b)/2.0)+fn(b))/6
 
 //resultados Simpmson 1/3
 val res1=simpson1(3,5,fx1)
@@ -22,16 +23,15 @@ val res6=simpson1(2,3,fx6)
 val res7=simpson1(0,1,fx7)
 
 //calculo de Errores
-val error1= (res1- 7.33)
-val error2= (res2 - 8)
-val error3= (res3- 3.333)
-val error4 =(res4 - 1.09861)
-val error5= (res5 - 1.71828)
-val error6 = (res6 - 0.828427)
-val error7= (res7 - 0.785398)
+val error1= calular_Error(res1,7.33)
+val error2= calular_Error(res2,8)
+val error3= calular_Error(res3,3.333)
+val error4 =calular_Error(res4,1.09861)
+val error5= calular_Error(res5,1.71828)
+val error6 = calular_Error(res6,0.828427)
+val error7= calular_Error(res7,0.785398)
 
 //Metodo Simpson 1/3 compuesta
-
 val compuesta = (a:Int , b: Int,n: Int,fn: Double=> Double) =>{
   val h= (b-a)/(n*1.0)
   val xsub=(j:Double)=> a+(j*h)
@@ -48,13 +48,13 @@ val rCom6=compuesta(2,3,100,fx6)
 val rCom7=compuesta(0,1,100,fx7)
 
 //calculo de Errores Simpmson 1/3 Compuesta
-val errorCom1= (rCom1- 7.33)
-val errorCom2 =(rCom2- 8)
-val errorCom3= (rCom3- 3.333)
-val errorCom4 =(rCom4 - 1.09861)
-val errorCom5= (rCom5 - 1.71828)
-val errorCom6 = (rCom6 - 0.828427)
-val errorCom7= (rCom7 - 0.785398)
+val errorCom1= calular_Error(rCom1,7.33)
+val errorCom2 =calular_Error(rCom2,8)
+val errorCom3= calular_Error(rCom3,3.333)
+val errorCom4 =calular_Error(rCom4,1.09861)
+val errorCom5= calular_Error(rCom5,1.71828)
+val errorCom6 = calular_Error(rCom6,0.828427)
+val errorCom7= calular_Error(rCom7,0.785398)
 
 //Metodo Simpson 1/3 extendida
 val extendida = (a:Int ,b:Int ,fn: Double => Double) => {
@@ -72,13 +72,13 @@ val rExtend6=extendida(2,3,fx6)
 val rExtend7=extendida(0,1,fx7)
 
 //calculo de Errores Simpmson 1/3 Extendida
-val errorExte1= (rExtend1- 7.33)
-val errorExte2 =(rExtend2- 8)
-val errorExte3= (rExtend3- 3.333)
-val errorExte4 =(rExtend4 - 1.09861)
-val errorExte5= (rExtend5 - 1.71828)
-val errorExte6 = (rExtend6 - 0.828427)
-val errorExte7= (rExtend7 - 0.785398)
+val errorExte1= calular_Error(rExtend1,7.33)
+val errorExte2 =calular_Error(rExtend2,8)
+val errorExte3= calular_Error(rExtend3,3.333)
+val errorExte4 =calular_Error(rExtend4,1.09861)
+val errorExte5= calular_Error(rExtend5,1.71828)
+val errorExte6 = calular_Error(rExtend6,0.828427)
+val errorExte7= calular_Error(rExtend7,0.785398)
 @main def proyecto():Unit={
   println("Metodo Simpson 1/3")
   println(res1)
